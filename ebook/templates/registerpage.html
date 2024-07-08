@@ -1,0 +1,507 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Register Page</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">-->
+<!--<style>-->
+<!--    body {-->
+<!--        width: 100%;-->
+<!--        height: 100vh;-->
+<!--        margin: 0%;-->
+<!--        background-image: linear-gradient(45deg, #0063B2FF, #9CC3D5FF, #0063B2FF);-->
+<!--    }-->
+
+<!--    .modal-content {-->
+<!--        position: relative;-->
+<!--        width: 500px;-->
+<!--        height: 530px;-->
+<!--        margin-left: auto;-->
+<!--        margin-right: auto;-->
+<!--        padding: 20px;-->
+<!--        background-color: rgb(236, 246, 240);-->
+<!--        border-radius: 10px;-->
+<!--        top: 5px;-->
+<!--        box-shadow: 5px 5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                    -5px -5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                    -5px 5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                    5px -5px 15px rgba(0, 99, 178, 0.5);-->
+<!--    }-->
+
+<!--    input {-->
+<!--        width: 400px;-->
+<!--        padding: 5px;-->
+<!--        border-radius: 5px;-->
+<!--        border-width: 1px;-->
+<!--        margin-bottom: 10px;-->
+<!--    }-->
+
+<!--    .button-container {-->
+<!--        display: flex;-->
+<!--        justify-content: space-between;-->
+<!--        width: 400px;-->
+<!--        margin-top: 20px;-->
+<!--        margin-left: auto;-->
+<!--        margin-right: auto;-->
+<!--    }-->
+
+<!--    button {-->
+<!--        width: 48%;-->
+<!--        padding: 10px;-->
+<!--        background-color: #0063B2FF;-->
+<!--        color: white;-->
+<!--        border: 0px;-->
+<!--        border-radius: 10px;-->
+<!--    }-->
+<!--</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form class="modal-content" method="post" action="/register" onsubmit="return validateForm()">-->
+<!--        <h1>Register Page</h1>-->
+<!--        <label>Name</label>-->
+<!--        <input type="text" placeholder="Enter Your Name" name="Name">-->
+<!--        <label>E-mail ID</label>-->
+<!--        <input type="email" placeholder="Enter Your Email" name="Email">-->
+<!--        <label>Password</label>-->
+<!--        <input type="password" id="password" placeholder="Create your Password" name="Password">-->
+<!--        <label>Confirm Password</label>-->
+<!--        <input type="password" id="cpassword" placeholder="Confirm your Password" name="CPassword">-->
+<!--        <label>Username</label>-->
+<!--        <input type="text" placeholder="Create your username" name="Username">-->
+<!--        <div class="button-container">-->
+<!--            <button type="submit">Register</button>-->
+<!--            <button type="reset">Reset</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <script>-->
+<!--        function validateForm() {-->
+<!--            var password = document.getElementById("password").value;-->
+<!--            var cpassword = document.getElementById("cpassword").value;-->
+<!--            if (password !== cpassword) {-->
+<!--                alert("Password and Confirm Password do not match.");-->
+<!--                return false;-->
+<!--            }-->
+<!--            return true;-->
+<!--        }-->
+<!--    </script>-->
+<!--    {% if dmsg %}-->
+<!--    <script>-->
+<!--        alert("This email or username is already exit.");-->
+<!--    </script>-->
+<!--    {% endif %}-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #003b73, #0072b1);
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-content {
+            width: 350px;
+            padding-left: 40px;
+            padding-right: 20px;
+            padding-bottom: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            color: white;
+        }
+
+        .modal-content h1 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .modal-content .input-icon {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-content .input-icon input {
+            width: calc(100% - 40px); /* Adjusted width for spacing */
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            margin-left: 20px; /* Adjusted margin for spacing */
+        }
+
+        .modal-content .input-icon i {
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+        }
+
+        .modal-content .input-icon input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal-content .input-icon input:focus {
+            border-bottom: 2px solid #00ccff;
+        }
+
+        .modal-content .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px; /* Added gap between buttons */
+        }
+
+        .modal-content .button-container button {
+            flex: 1;
+            padding: 10px;
+            background-color: #00ccff;
+            color: #004d91;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-content .button-container button:hover {
+            box-shadow: 0 2px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        #validp,#valid {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .modal-content .login {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ccff;
+            color: #004d91;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-content .login:hover {
+
+            box-shadow: 0 2px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .modal-content .click {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+
+
+
+
+
+        .modal-content input:-webkit-autofill {
+            -webkit-text-fill-color: white; /* Set text color to white */
+            transition: background-color 5000s ease-in-out 0s; /* Override Chrome's autofill background color */
+        }
+
+        /* Override Chrome's autocomplete background for the placeholder */
+        .modal-content input:-webkit-autofill::first-line {
+            color: white !important; /* Ensure placeholder text color remains white */
+        }
+        h1 a:hover{
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <form class="modal-content" method="post" action="/register" onsubmit="return validateForm()">
+        <h1><a href="{{ url_for('base') }}" style="color:white">Register Page</a></h1>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-user"></i>
+            <input type="text" id="name" placeholder="Enter Your Name" name="Name" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <input type="email" id="email" placeholder="Enter Your Email" name="Email" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-lock"></i>
+            <input type="password" id="password" placeholder="Create your Password" name="Password" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-lock"></i>
+            <input type="password" id="cpassword" placeholder="Confirm your Password" name="CPassword" required>
+        </div>
+        <p id="validp">Email or username already exists.</p>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-user"></i>
+            <input type="text" id="username" placeholder="Create your Username" name="Username" required>
+        </div>
+        <p id="valid">Email or username already exists.</p>
+        <div class="button-container">
+            <button type="submit" class="login">Register</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var cpassword = document.getElementById("cpassword").value;
+            if (password !== cpassword) {
+                document.getElementById("validp").style.display = "block";
+                return false;
+            }
+            return true;
+        }
+
+        // Check if dmsg exists to show the validation message
+        {% if dmsg %}
+            document.getElementById("valid").style.display = "block";
+        {% endif %}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Register Page</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            margin: 0;-->
+<!--            background: linear-gradient(135deg, #0063B2FF, #9CC3D5FF);-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--        }-->
+
+<!--        .modal-content {-->
+<!--            width: 100%;-->
+<!--            max-width: 400px;-->
+<!--            padding: 30px;-->
+<!--            background-color: #ffffff;-->
+<!--            border-radius: 15px;-->
+<!--            box-shadow: 0 10px 25px rgba(0, 99, 178, 0.5);-->
+<!--            text-align: center;-->
+<!--            position: relative;-->
+<!--            animation: fadeIn 1s ease-in-out;-->
+<!--        }-->
+
+<!--        @keyframes fadeIn {-->
+<!--            from {-->
+<!--                opacity: 0;-->
+<!--                transform: scale(0.9);-->
+<!--            }-->
+<!--            to {-->
+<!--                opacity: 1;-->
+<!--                transform: scale(1);-->
+<!--            }-->
+<!--        }-->
+
+<!--        .modal-content h1 {-->
+<!--            color: #0063B2FF;-->
+<!--            margin-bottom: 20px;-->
+<!--            font-size: 24px;-->
+<!--        }-->
+
+<!--        .modal-content label {-->
+<!--            color: #333;-->
+<!--            font-weight: bold;-->
+<!--            display: block;-->
+<!--            margin-bottom: 5px;-->
+<!--            text-align: left;-->
+<!--        }-->
+
+<!--        .modal-content input[type="text"],-->
+<!--        .modal-content input[type="email"],-->
+<!--        .modal-content input[type="password"] {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            margin-bottom: 20px;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 5px;-->
+<!--            box-sizing: border-box;-->
+<!--            transition: border-color 0.3s, box-shadow 0.3s;-->
+<!--        }-->
+
+<!--        .modal-content input[type="text"]:focus,-->
+<!--        .modal-content input[type="email"]:focus,-->
+<!--        .modal-content input[type="password"]:focus {-->
+<!--            border-color: #0063B2FF;-->
+<!--            box-shadow: 0 0 5px rgba(0, 99, 178, 0.5);-->
+<!--            outline: none;-->
+<!--        }-->
+
+<!--        .button-container {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            width: 100%;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .button-container button {-->
+<!--            width: 48%;-->
+<!--            padding: 10px;-->
+<!--            background-color: #0063B2FF;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 16px;-->
+<!--            transition: background-color 0.3s, box-shadow 0.3s;-->
+<!--        }-->
+
+<!--        .button-container button:hover {-->
+<!--            background-color: #004d91;-->
+<!--            box-shadow: 0 4px 15px rgba(0, 99, 178, 0.5);-->
+<!--        }-->
+
+<!--        @media (max-width: 400px) {-->
+<!--            .modal-content {-->
+<!--                width: 90%;-->
+<!--                padding: 20px;-->
+<!--            }-->
+
+<!--            .modal-content h1 {-->
+<!--                font-size: 20px;-->
+<!--            }-->
+
+<!--            .button-container {-->
+<!--                flex-direction: column;-->
+<!--                align-items: center;-->
+<!--            }-->
+
+<!--            .button-container button {-->
+<!--                width: 100%;-->
+<!--                margin-bottom: 10px;-->
+<!--            }-->
+<!--        }-->
+<!--        #valid{-->
+<!--        color:red;-->
+<!--        display:none;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form class="modal-content" method="post" action="/register" onsubmit="return validateForm()">-->
+<!--        <h1>Register Page</h1>-->
+<!--        <label for="name">Name</label>-->
+<!--        <input type="text" id="name" placeholder="Enter Your Name" name="Name" required>-->
+<!--        <label for="email">E-mail ID</label>-->
+<!--        <input type="email" id="email" placeholder="Enter Your Email" name="Email" required>-->
+<!--        <label for="password">Password</label>-->
+<!--        <input type="password" id="password" placeholder="Create your Password" name="Password" required>-->
+<!--        <label for="cpassword">Confirm Password</label>-->
+<!--        <input type="password" id="cpassword" placeholder="Confirm your Password" name="CPassword" required>-->
+<!--        <label for="username">Username</label>-->
+<!--        <input type="text" id="username" placeholder="Create your username" name="Username" required>-->
+<!--        <p id="valid">Email or username already exit</p>-->
+<!--        <div class="button-container">-->
+<!--            <button type="submit">Register</button>-->
+<!--            <button type="reset">Reset</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <script>-->
+<!--        function validateForm() {-->
+<!--            var password = document.getElementById("password").value;-->
+<!--            var cpassword = document.getElementById("cpassword").value;-->
+<!--            if (password !== cpassword) {-->
+<!--                alert("Password and Confirm Password do not match.");-->
+<!--                return false;-->
+<!--            }-->
+<!--            return true;-->
+<!--        }-->
+<!--    </script>-->
+<!--    {% if dmsg %}-->
+<!--    <script>-->
+<!--        //alert("This email or username already exists.");-->
+<!--        let v = document.getElementById("valid");-->
+<!--        v.style.display = "block";-->
+
+<!--    </script>-->
+<!--    {% endif %}-->
+<!--</body>-->
+<!--</html>-->

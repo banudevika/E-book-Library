@@ -1,0 +1,291 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Login page</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">-->
+<!--<style>-->
+<!--    body-->
+<!--    {-->
+<!--        width: 100%;-->
+<!--        height: 100vh;-->
+<!--        margin:0%;-->
+<!--        background-image:linear-gradient(45deg,#0063B2FF,#9CC3D5FF,#0063B2FF);-->
+
+<!--    }-->
+
+
+<!--    .modal-content-->
+<!--    {-->
+<!--        position: relative;-->
+<!--        width: 500px;-->
+<!--        height:425px;-->
+<!--        margin-left: auto;-->
+<!--        margin-right: auto;-->
+<!--        padding: 20px;-->
+<!--        background-color: rgb(236, 246, 240);-->
+<!--        border-radius: 10px;-->
+<!--        top: 50px;-->
+<!--        box-shadow: 5px 5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                -5px -5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                -5px 5px 15px rgba(0, 99, 178, 0.5),-->
+<!--                5px -5px 15px rgba(0, 99, 178, 0.5);-->
+<!--    }-->
+<!--    input-->
+<!--    {-->
+<!--        width: 400px;-->
+<!--        padding: 5px;-->
+<!--        border-radius:5px;-->
+<!--        border-width:1px;-->
+<!--    }-->
+<!--    .login-->
+<!--    {-->
+<!--        width: 100px;-->
+<!--        padding: 10px;-->
+<!--        background-color:#0063B2FF;-->
+<!--        color: white;-->
+<!--        border: 0px;-->
+<!--        margin-left: 150px;-->
+<!--        margin-bottom: 5px;-->
+<!--        border-radius: 10px;-->
+<!--    }-->
+<!--    span-->
+<!--    {-->
+<!--       color: #3e07d5;-->
+<!--        margin-top: 10px;-->
+<!--    }-->
+<!--    .sign-->
+<!--    {-->
+<!--        margin-left: 20px;-->
+<!--    }-->
+<!--    .icon-->
+<!--    {-->
+<!--        margin-left: 115px;-->
+<!--    }-->
+<!--</style>-->
+<!--<body>-->
+<!--        <form class="modal-content" method="post">-->
+<!--            <h1>Login Page</h1>-->
+<!--            <label>Username or E-mail ID </label><br>-->
+<!--            <input type="text" placeholder="Enter Your email" name="Email"><br>-->
+<!--            <label>Password</label><br>-->
+<!--            <input type="password" placeholder="Enter your Password" name="Password"><br>-->
+<!--            <div class="click"><label>forgot password?<a href="#">click me</a></label><button class="login">Login</button><br></div>-->
+<!--            <br><center><lable>Create a account<a class="sign" href="{{ url_for('register') }}">Signup</a></lable></center><br><br>-->
+<!--        </form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #003b73, #0072b1);
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-content {
+            width: 350px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            color: white;
+        }
+
+        .modal-content h1 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .modal-content label {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="password"] {
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            background: transparent;
+            color: white;
+            font-size: 16px;
+        }
+
+        .modal-content input[type="text"]::placeholder,
+        .modal-content input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal-content input[type="text"]:focus,
+        .modal-content input[type="password"]:focus {
+            border-bottom: 2px solid #00ccff;
+            outline: none;
+        }
+
+        .modal-content .login {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ccff;
+            color: #004d91;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-content .login:hover {
+
+            box-shadow: 0 2px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .modal-content .click {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .modal-content .click a {
+            color: #002897;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+
+
+        .modal-content .signup {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .modal-content .signup a {
+            color:  #002897;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+
+        .modal-content .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .modal-content .input-icon {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .modal-content .input-icon i {
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+        }
+
+        .modal-content .input-icon input {
+            padding-left: 30px;
+        }
+        .modal-content input:-webkit-autofill {
+            -webkit-text-fill-color: white; /* Set text color to white */
+            transition: background-color 5000s ease-in-out 0s; /* Override Chrome's autofill background color */
+        }
+
+        /* Override Chrome's autocomplete background for the placeholder */
+        .modal-content input:-webkit-autofill::first-line {
+            color: white !important; /* Ensure placeholder text color remains white */
+        }
+        #valid{
+        display:none;
+        color:red
+        }
+        h1 a:hover{
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <form class="modal-content" method="post">
+        <h1><a href="{{ url_for('base') }}" style="color:white">Login Page</a></h1>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <input type="text" id="email" placeholder="Email address" name="Email" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-lock"></i>
+            <input type="password" id="password" placeholder="Password" name="Password" required>
+        </div>
+        <p id="valid">Wrong password or email</p>
+
+        <button type="submit" class="login">Login </button>
+        <div class="signup">
+            <div class="remember-me">
+            </div>
+            <div>
+                New here? <a href="{{ url_for('register') }}">Sign in!</a>
+            </div>
+        </div>
+    </form>
+<script>
+        {% if eh %}
+            document.getElementById("valid").style.display = "block";
+        {% endif %}
+</script>
+</body>
+</html>

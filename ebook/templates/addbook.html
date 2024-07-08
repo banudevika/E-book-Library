@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add book</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #003b73, #0072b1);
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-content {
+            width: 370px;
+            padding-left: 40px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            color: white;
+        }
+
+        .modal-content h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .modal-content .input-icon {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-content .input-icon input,
+        .modal-content input[type="file"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            margin-left: 20px;
+        }
+
+        .modal-content .input-icon i {
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+        }
+
+        .modal-content .input-icon input::placeholder,
+        .modal-content input[type="file"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal-content .input-icon input:focus,
+        .modal-content input[type="file"]:focus {
+            border-bottom: 2px solid #00ccff;
+        }
+
+        .modal-content .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .modal-content .button-container button {
+            flex: 1;
+            padding: 10px;
+            background-color: #00ccff;
+            color: #004d91;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-content .button-container button:hover {
+            box-shadow: 0 2px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .modal-content #valid {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .modal-content .login {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ccff;
+            color: #004d91;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-content .login:hover {
+            box-shadow: 0 2px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .modal-content .click {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+       #valid {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .modal-content input:-webkit-autofill {
+            -webkit-text-fill-color: white;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .modal-content input:-webkit-autofill::first-line {
+            color: white !important;
+        }
+        h1 a:hover{
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <form class="modal-content" method="post" enctype="multipart/form-data">
+        <h1><a href="{{ url_for('base') }}" style="color:white">Add Book</a></h1>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-book"></i>
+            <input type="text" placeholder="Enter Book Name" name="bookname" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-user"></i>
+            <input type="text" placeholder="Enter Author Name" name="authorname" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-tag"></i>
+            <input type="text" placeholder="Enter Book Category" name="bookcategory" required>
+        </div>
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-info-sign"></i>
+            <input type="text" placeholder="Enter Book Information" name="bookinformation" required>
+        </div>
+        <div class="input-icon files">
+            <i class="glyphicon glyphicon-picture"></i>
+            <input type="file" name="bookimage" accept=".jpg,.jpeg,.png" required>
+        </div>
+        <div class="input-icon files">
+            <i class="glyphicon glyphicon-file"></i>
+            <input type="file" name="bookfile" accept=".pdf" required>
+        </div>
+        <p id="valid">Image or File already exists</p>
+        <div class="button-container">
+            <button type="submit" class="login">Register</button>
+            <button type="reset">Reset</button>
+        </div>
+
+    </form>
+    <script>
+    {% if dmsg %}
+        document.getElementById("valid").style.display = "block";
+    {% endif %}
+    </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

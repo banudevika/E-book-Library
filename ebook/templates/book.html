@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<style>
+       /* General Styling */
+        body, html {
+            height: 100%;
+        }
+        .container-fluid {
+            height: 100%;
+            overflow: hidden; /* Ensure no overflow on body/html */
+        }
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: #9CC3D5FF;
+            padding: 15px;
+            color: #0063B2FF;
+            overflow-y: auto; /* Enable vertical scroll */
+            height: 100vh;
+        }
+        /* Main Content Styling */
+        .main-content {
+            overflow-y: auto; /* Enable vertical scroll */
+            padding: 15px; /* Adjust padding as needed */
+            height: 100vh;
+        }
+        .navbar-toggler {
+            margin-left: auto;
+        }
+        /* Card Styling (Sample) */
+        .card {
+            display: table;
+            width: 600px !important;
+            height: 250px !important;
+            margin-bottom: 20px;
+            background-color: #fff;
+            margin-left: 30px;
+            border: none;
+        }
+        .card-image {
+            display: table-cell;
+            width: 40%;
+            padding: 20px;
+            vertical-align: top;
+        }
+        .cimg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+        .card-content {
+            display: table-cell;
+            width: 60%;
+            padding: 20px;
+            vertical-align: top;
+        }
+        .card-title {
+            font-size: 1.50rem;
+            margin-bottom: 10px;
+            color: #0063B2FF;
+        }
+        .card-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .text-body-secondary {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        .read {
+            background-color: #9CC3D5FF;
+            border: none;
+            width: 150px;
+            height: 40px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 20, 50, 0.3) !important;
+        }
+        #booknav {
+            background-color: white !important;
+        }
+        #booknav button {
+            border: 1px solid #0063B2FF;
+            color: #0063B2FF;
+        }
+        #booknav button:hover {
+            background-color: white;
+            color: #0063B2FF;
+        }
+        #search {
+            width: 300px !important;
+        }
+        .form-check-label {
+            color: black;
+            margin-left: 20px;
+        }
+        .form-check-input {
+            display: none;
+        }
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+</style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar for larger screens -->
+        <div class="col-md-3 d-none d-md-block sidebar">
+            <h2>Sidebar </h2>
+            <p>This is a Bootstrap sidebar.</p>
+            <!-- Form Check Items -->
+            <form id="filter-form" method="GET" action="{{ url_for('book') }}">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="all" id="flexCheckDefault0">
+                <label class="form-check-label" for="flexCheckDefault0">All</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Education" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">Education</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Adventure" id="flexCheckDefault1">
+                <label class="form-check-label" for="flexCheckDefault1">Adventure</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Non-Fiction" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2">Non-Fiction</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Novel" id="flexCheckDefault3">
+                <label class="form-check-label" for="flexCheckDefault3">Novel</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Romance" id="flexCheckDefault4">
+                <label class="form-check-label" for="flexCheckDefault4">Romance</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Biography" id="flexCheckDefault5">
+                <label class="form-check-label" for="flexCheckDefault5">Biography</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Mystery" id="flexCheckDefault6">
+                <label class="form-check-label" for="flexCheckDefault6">Mystery</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Horror" id="flexCheckDefault7">
+                <label class="form-check-label" for="flexCheckDefault7">Horror</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Fantasy" id="flexCheckDefault8">
+                <label class="form-check-label" for="flexCheckDefault8">Fantasy</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Crime" id="flexCheckDefault9">
+                <label class="form-check-label" for="flexCheckDefault9">Crime</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Fairytale" id="flexCheckDefault10">
+                <label class="form-check-label" for="flexCheckDefault10">Fairytale</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Health/fitness" id="flexCheckDefault11">
+                <label class="form-check-label" for="flexCheckDefault11">Health/fitness</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Science" id="flexCheckDefault13">
+                <label class="form-check-label" for="flexCheckDefault13">Science</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="category" value="Thriller" id="flexCheckDefault14">
+                <label class="form-check-label" for="flexCheckDefault14">Thriller</label>
+            </div>
+            </form>
+            <!-- Repeat for other checkboxes as needed -->
+        </div>
+
+        <!-- Navbar for smaller screens -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light d-md-none">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="sidebarMenu">
+                <div class="bg-light sidebar">
+                    <h2>Sidebar</h2>
+                    <p>This is a Bootstrap sidebar.</p>
+                    <!-- Form Check Items -->
+                    <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault0">
+                <label class="form-check-label" for="flexCheckDefault0">All</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">Education</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                <label class="form-check-label" for="flexCheckDefault1">Adventure</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2">Non-Fiction</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                <label class="form-check-label" for="flexCheckDefault3">Novel</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+                <label class="form-check-label" for="flexCheckDefault4">Romance</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                <label class="form-check-label" for="flexCheckDefault5">Biography</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
+                <label class="form-check-label" for="flexCheckDefault6">Mystery</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7">
+                <label class="form-check-label" for="flexCheckDefault7">Horror</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                <label class="form-check-label" for="flexCheckDefault8">Fantasy</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9">
+                <label class="form-check-label" for="flexCheckDefault9">Crime</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault10">
+                <label class="form-check-label" for="flexCheckDefault10">Fairytale</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
+                <label class="form-check-label" for="flexCheckDefault11">Health/fitness</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault13">
+                <label class="form-check-label" for="flexCheckDefault13">Science</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault14">
+                <label class="form-check-label" for="flexCheckDefault14">Thriller</label>
+            </div>
+                    <!-- Repeat for other checkboxes as needed -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <nav class="navbar bg-body-tertiary" id="booknav">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="{{url_for('base')}}" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo2.jpg') }}" style="border-radius:20px; height: 42px;" alt="ebook" height="30">
+                <b style="font-size: 30px; margin-left: 10px;">e<span style="color:#9CC3D5FF">book</span></b></a>
+                <form class="d-flex" role="search" action="{{ url_for('book') }}" method="GET">
+                      <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <button class="btn btn-outline-success"><a href="{{ url_for('addbook') }}" style="text-decoration:none;">addbook</a></button>
+
+              </div>
+            </nav>
+            <div class="main-content">
+            {% for data in book %}
+            <div class="card">
+                <div class="card-image">
+                <img class="cimg" src="{{ url_for('static', filename='bookimages/'+data[5]) }}" alt="Image">
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">{{data[1]}}</h4>
+                    <p class="card-text">{{data[4]}}</p>
+                    <p class="card-text"><small class="text-body-secondary">author name - {{data[2]}}</small></p>
+                    <button class="read"><a href="{{ url_for('static', filename='bookpdfs/'+data[6]) }}" target=_blank" style="color:#0063B2FF;text-decoration:none;">Read</a></button>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+
+
+            <!-- Repeat for other cards as needed -->
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function(event) {
+            event.preventDefault();
+            document.getElementById('filter-form').submit();
+        });
+    });
+</script>
+
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
